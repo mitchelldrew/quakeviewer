@@ -1,5 +1,7 @@
 package com.mdrew.quakeviewer
 
-interface IListView {
+import com.mdrew.quakeviewer.model.QuakeResponse
 
+interface IListView {
+fun displayQuakes(response:QuakeResponse)
 }
