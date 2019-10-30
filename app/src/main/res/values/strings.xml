@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">QuakeViewer</string>
     <string name="title_activity_maps">Map</string>
+    <string name="base_url">http://api.geonames.org/</string>
+    <string name="lat_bundle_key">lat</string>
+    <string name="lng_bundle_key">lng</string>
+    <string name="title_bundle_key">title</string>
 </resources>

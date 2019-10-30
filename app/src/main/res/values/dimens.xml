@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="magnitude_margin">6dp</dimen>
+    <dimen name="cell_padding">6dip</dimen>
+    <dimen name="magnitude_textSize">36sp</dimen>
+    <dimen name="firstline_textsize">16sp</dimen>
+    <dimen name="secondLine_height">26dip</dimen>
+    <dimen name="secondLine_textSize">12sp</dimen>
+
+</resources>
