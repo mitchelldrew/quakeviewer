@@ -2,7 +2,6 @@ package com.mdrew.quakeviewer
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
@@ -27,6 +26,7 @@ class ListActivity : AppCompatActivity(), IListView, AdapterView.OnItemClickList
 
     private fun findViews(){
         list = findViewById(R.id.quake_list)
+        list.onItemClickListener = this
     }
 
     override fun onResume() {
@@ -38,13 +38,14 @@ class ListActivity : AppCompatActivity(), IListView, AdapterView.OnItemClickList
     override fun displayQuakes(response: QuakeResponse) {
         list.adapter = QuakeArrayAdapter(response.earthquakes, this)
         list.invalidate()
-        list.onItemClickListener = this
     }
 
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val adapter = list.adapter as QuakeArrayAdapter
-        handleClick(adapter.quakes[p2])
+        adapter.quakes?.let {
+            handleClick(it[p2])
+        }
     }
 
     private fun handleClick(quake:Quake){

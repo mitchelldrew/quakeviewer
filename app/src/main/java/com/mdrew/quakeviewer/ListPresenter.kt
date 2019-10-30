@@ -1,8 +1,6 @@
 package com.mdrew.quakeviewer
 
 import com.mdrew.quakeviewer.rest.QuakeService
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class ListPresenter(val quakeService: QuakeService, val schedulerProvider:ISchedulerProvider): IListPresenter{
     private lateinit var view:IListView
