@@ -2,10 +2,7 @@ package com.mdrew.quakeviewer.di
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.mdrew.quakeviewer.IListPresenter
-import com.mdrew.quakeviewer.ListPresenter
-import com.mdrew.quakeviewer.QuakeApplication
-import com.mdrew.quakeviewer.R
+import com.mdrew.quakeviewer.*
 import com.mdrew.quakeviewer.rest.QuakeService
 import dagger.Module
 import dagger.Provides
@@ -40,8 +37,13 @@ class QuakeModule(private val application: QuakeApplication){
     }
 
     @Provides
-    fun provideIListPresenter(quakeService: QuakeService): IListPresenter {
-        return ListPresenter(quakeService)
+    fun provideISchedulerProvider(): ISchedulerProvider {
+        return SchedulerProvider()
+    }
+
+    @Provides
+    fun provideIListPresenter(quakeService: QuakeService, schedulerProvider: ISchedulerProvider): IListPresenter {
+        return ListPresenter(quakeService, schedulerProvider)
     }
 
 }

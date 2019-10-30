@@ -4,7 +4,7 @@ import com.mdrew.quakeviewer.rest.QuakeService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ListPresenter(val quakeService: QuakeService): IListPresenter{
+class ListPresenter(val quakeService: QuakeService, val schedulerProvider:ISchedulerProvider): IListPresenter{
     private lateinit var view:IListView
 
     override fun setView(view: IListView) {
@@ -19,8 +19,8 @@ class ListPresenter(val quakeService: QuakeService): IListPresenter{
             east = -22.4,
             west = 55.2,
             username = "mkoppelman")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(schedulerProvider.newThread())
+            .observeOn(schedulerProvider.mainThread())
             .subscribe {
                 view.displayQuakes(it)
             }
