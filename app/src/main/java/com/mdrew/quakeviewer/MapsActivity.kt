@@ -25,10 +25,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback  {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val quake = LatLng(
-            intent.extras.getDouble(resources.getString(R.string.lat_bundle_key)),
-            intent.extras.getDouble(resources.getString(R.string.lng_bundle_key)))
-        mMap.addMarker(MarkerOptions().position(quake).title(intent.extras.getString(resources.getString(R.string.title_bundle_key))))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(quake))
+        intent.extras?.let {
+            val quake = LatLng(
+                it.getDouble(resources.getString(R.string.lat_bundle_key)),
+                it.getDouble(resources.getString(R.string.lng_bundle_key)))
+            mMap.addMarker(MarkerOptions().position(quake).title(it.getString(resources.getString(R.string.title_bundle_key))))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(quake))
+        }
     }
 }

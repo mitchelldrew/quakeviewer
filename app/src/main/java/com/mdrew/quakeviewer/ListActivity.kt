@@ -36,14 +36,14 @@ class ListActivity : AppCompatActivity(), IListView, AdapterView.OnItemClickList
 
 
     override fun displayQuakes(response: QuakeResponse) {
-        list.adapter = QuakeArrayAdapter(response.earthquakes, this)
+        list.adapter = QuakeArrayAdapter(ArrayList(response.earthquakes), this)
         list.invalidate()
     }
 
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val adapter = list.adapter as QuakeArrayAdapter
-        adapter.quakes?.let {
+        adapter.quakes.let {
             handleClick(it[p2])
         }
     }
