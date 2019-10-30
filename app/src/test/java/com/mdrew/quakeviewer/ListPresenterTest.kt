@@ -1,7 +1,6 @@
 package com.mdrew.quakeviewer
 
 import com.mdrew.quakeviewer.model.*
-import com.mdrew.quakeviewer.rest.QuakeService
 import io.reactivex.Observable
 import org.junit.Assert
 import org.junit.Test
@@ -39,9 +38,7 @@ fun listPresenterCallsQuakeServiceAndDisplaysResult(){
     val listPresenter = ListPresenter(mockQuakeService, mockScheduler)
     listPresenter.setView(mockListView)
 
-    /////
     listPresenter.getQuakes()
-    /////
 
     Assert.assertEquals(1, mockQuakeService.getQuakesCounter)
     Assert.assertEquals(1, mockListView.displayQuakesCounter)

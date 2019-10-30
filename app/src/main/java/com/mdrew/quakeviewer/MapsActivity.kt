@@ -9,13 +9,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import javax.inject.Inject
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, IMapsView {
-
-
-    override fun displayQuake(latitude: Double, longitude: Double) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback  {
 
     private lateinit var mMap: GoogleMap
 
@@ -28,21 +24,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, IMapsView {
         mapFragment.getMapAsync(this)
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val quake = LatLng(
+            intent.extras.getDouble(resources.getString(R.string.lat_bundle_key)),
+            intent.extras.getDouble(resources.getString(R.string.lng_bundle_key)))
+        mMap.addMarker(MarkerOptions().position(quake).title(intent.extras.getString(resources.getString(R.string.title_bundle_key))))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(quake))
     }
 }
