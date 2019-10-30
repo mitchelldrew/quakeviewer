@@ -1,5 +1,8 @@
 package com.mdrew.quakeviewer
 
-class ListPresenterTest {
+import org.junit.Test
 
+class ListPresenterTest {
+@Test
+fun listPresenter
 }
